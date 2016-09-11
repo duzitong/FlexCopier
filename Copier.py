@@ -4,12 +4,11 @@ import os, shutil, stat
 class Copier():
     def __init__(self):
         # read rule json
-        config = json.load(open("Config.json"))
-        rootPath = config["RootPath"]
+        rules = json.load(open("Rules.json"))
 
         # build dict tree
         self.dictTree = Node()
-        for rule in config["Rules"]:
+        for rule in rules:
             self._generateRule(rule)
         # self._printDictTree(self.dictTree)
 
@@ -25,12 +24,10 @@ class Copier():
                 cur = cur.children[directory]
                 length += len(directory) + 1
             else:
-                print(directory)
                 if cur.dst:
                     # force copy
                     # print(relPath, cur.dst)
                     remainPath = relPath[length:]
-                    print(remainPath)
                     for dst in cur.dst:
                         dstPath = os.path.join(dst, os.path.normpath(remainPath))
                         try:
