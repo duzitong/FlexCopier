@@ -1,0 +1,18 @@
+{
+    "RootPath": ".",
+    "Rules":
+    [
+        {
+            "src": ".git",
+            "dst": ["."]
+        },
+        {
+            "src": "__pycache__",
+            "dst": ["."]
+        },
+        {
+            "src": "test",
+            "dst": ["haha"]
+        }
+    ]
+}

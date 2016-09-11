@@ -1,13 +1,13 @@
 import sys
 
 from PyQt4 import QtGui, QtCore
-from Copier import *
+from Copier import Copier
 
 class DragDropDialog(QtGui.QDialog):
     def __init__(self, parent):
         super(DragDropDialog, self).__init__()
         self.messageBrowser = QtGui.QTextBrowser(self)
-        self.messageBrowser.setGeometry(QtCore.QRect(0, 0, 290, 390))
+        self.messageBrowser.setGeometry(QtCore.QRect(0, 0, 580, 380))
         self.copier = Copier()
         self.setAcceptDrops(True)
 
@@ -34,11 +34,11 @@ class DragDropDialog(QtGui.QDialog):
 class MyWindow(QtGui.QWidget):
     def __init__(self):
         super(MyWindow,self).__init__()
-        self.setGeometry(100,100,300,400)
+        self.setGeometry(100,100,600,400)
         self.setWindowTitle("FlexCopier")
 
         self.dialog = DragDropDialog(self)
-        self.dialog.setGeometry(QtCore.QRect(0, 0, 300, 400))
+        self.dialog.setGeometry(QtCore.QRect(0, 0, 600, 400))
         layout = QtGui.QVBoxLayout(self)
         layout.addWidget(self.dialog)
 
