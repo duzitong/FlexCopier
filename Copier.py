@@ -19,21 +19,24 @@ class Copier():
         relPath = os.path.relpath(filePath).replace("\\", "/")
         cur = self.dictTree
         copiedFiles = []
+        length = 0
         for directory in relPath.split("/"):
             if directory in cur.children:
                 cur = cur.children[directory]
+                length = len(directory) + 1
             else:
                 if cur.dst:
                     # force copy
                     # print(relPath, cur.dst)
-                    fileName = relPath.split("/")[-1]
+                    remainPath = relPath[length:]
                     for dst in cur.dst:
-                        dstPath = os.path.join(dst, fileName)
+                        dstPath = os.path.join(dst, remainPath)
                         try:
                             shutil.copyfile(relPath, dstPath)
                         except IOError as e:
-                            if not os.path.exists(dst):
-                                os.mkdir(dst)
+                            dirName = os.path.dirname(dstPath)
+                            if not os.path.exists(dirName):
+                                os.mkdir(dirName)
                             try:
                                 shutil.copyfile(relPath, dstPath)
                             except IOError as e:
