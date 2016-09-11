@@ -35,6 +35,9 @@ class MyWindow(QtGui.QWidget):
     def __init__(self):
         super(MyWindow,self).__init__()
         self.setGeometry(100,100,600,400)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
         self.setWindowTitle("FlexCopier")
 
         self.dialog = DragDropDialog(self)
