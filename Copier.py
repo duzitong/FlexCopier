@@ -23,20 +23,22 @@ class Copier():
         for directory in relPath.split("/"):
             if directory in cur.children:
                 cur = cur.children[directory]
-                length = len(directory) + 1
+                length += len(directory) + 1
             else:
+                print(directory)
                 if cur.dst:
                     # force copy
                     # print(relPath, cur.dst)
                     remainPath = relPath[length:]
+                    print(remainPath)
                     for dst in cur.dst:
-                        dstPath = os.path.join(dst, remainPath)
+                        dstPath = os.path.join(dst, os.path.normpath(remainPath))
                         try:
                             shutil.copyfile(relPath, dstPath)
                         except IOError as e:
                             dirName = os.path.dirname(dstPath)
                             if not os.path.exists(dirName):
-                                os.mkdir(dirName)
+                                os.makedirs(dirName)
                             try:
                                 shutil.copyfile(relPath, dstPath)
                             except IOError as e:

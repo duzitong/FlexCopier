@@ -11,6 +11,10 @@
             "dst": ["."]
         },
         {
+            "src": "test/asdfasdf/dddd",
+            "dst": ["haha/asbalala"]
+        },
+        {
             "src": "test",
             "dst": ["haha"]
         }
